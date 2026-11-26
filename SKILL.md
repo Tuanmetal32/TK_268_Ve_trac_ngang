@@ -12,6 +12,12 @@ Nguồn: đọc phần trắc ngang của `~/Downloads/Test GT/02.TNTK.dwg` ngà
 Máy Linux này không có AutoCAD → dùng script Python + OpenCADStudio (MCP `opencadstudio`). Dùng chung venv của skill `trac-doc` (`~/.claude/skills/trac-doc/.venv`, có ezdxf). Tùy chọn `thiet_ke` gọi `tracdoc.py` của skill `trac-doc` để lấy cao độ tim thiết kế.
 
 
+
+## Quy tắc số liệu (người dùng yêu cầu 2026-11-26) — BẮT BUỘC
+- Luôn lấy số liệu từ file `.ntd` người dùng gửi (cọc, lý trình, cao độ tự nhiên, điểm trắc ngang TARGETL/TARGETR, mã địa vật, góc/đường cong). Không tự bịa, không suy đoán, không làm tròn hay "làm đẹp" số liệu.
+- Số liệu không có trong `.ntd` (đường đỏ/cao độ thiết kế, đáy rãnh, bề rộng và độ dốc mặt đường, kết cấu...) chỉ dùng khi người dùng đưa ra trong cuộc trò chuyện. Thiếu thì DỪNG và hỏi, không tự đặt giá trị giả định.
+- Khi báo kết quả: nêu rõ file `.ntd` đã dùng và nguồn của từng số liệu không đến từ `.ntd`.
+
 ## Quy tắc lưu file trắc dọc - trắc ngang (người dùng yêu cầu 2026-11-26)
 - Trắc dọc và trắc ngang của cùng một tuyến nằm CHUNG một bản vẽ, tên file `TK TDTN.dwg` (kèm `TK TDTN.dxf` trung gian), trong thư mục tuyến `~/Documents/Claude/<thư mục tuyến>/` (ví dụ `~/Documents/Claude/trac_doc_HUNGHOC/TK TDTN.dwg`).
 - Trắc dọc đặt ở gốc (ox=0, oy=0); trắc ngang đặt bên dưới: `ox = 18` (mép trái bảng trắc ngang thẳng mép trái bảng trắc dọc), `oy = −80` (cách đáy trắc dọc ≈ 30). Lưu `input.json` (trắc dọc) và `input_tracngang.json` (trắc ngang) trong thư mục tuyến.
